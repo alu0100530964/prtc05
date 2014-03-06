@@ -1,0 +1,34 @@
+#!/user/bin/python
+#! encoding: UTF-8
+
+import sys
+
+# Podemos hacerlo tambien con una funcion
+# def calcular_xi (n, i):
+# xi = (i - 1.0/2.0) / n
+# return xi
+argumentos = sys.argv[1:]
+ # print argumentos         Imprime la lista con los parametros que le des desde la consola
+if (len(argumentos) == 1):# si la lista es de un elemento entonces te hace el programa con el n de la lista si no lo pides por pantalla
+  n = int(argumentos[0])
+else:
+  print "Introduzca el nº de intervalos (n>0):"
+  n = int (raw_input())
+  
+if (n > 0):
+  sumatorio = 0.0
+  ini = 0
+  PI35 = 3.1415926535897931159979634685441852   # Lo ponemos como constante
+  intervalos = 1.0 / float (n)
+  for i in range (n):
+    x_i = ((i+1) - 1.0/2.0) / n
+    # En vez de la igualdad podemos poner: x_i = calcular_xi (n, i+1)
+    fx_i = 4.0 / (1+x_i * x_i)
+    print " Subintervalo: [", ini, ",", ini+intervalos, "] x_i:", x_i, "fx_i:", fx_i
+    ini += intervalos
+    sumatorio += fx_i
+  valor_pi = sumatorio / n  # Dede estar en linea con el if para que no se repita las i veces con el for
+  print "El valor aproximado de PI es:", valor_pi
+  print "El valor de PI con 35 decimales es: %10.35f" % PI35  
+else:
+  print "Introduzca un numero positivo"
